@@ -166,6 +166,7 @@ const Home: NextPage = () => {
           margin: 0 auto;
           margin-top: 20px;
           background-color: #464e5c;
+          color: #fff;
           border: none;
           border-radius: 2px;
           font-size: 15px;
