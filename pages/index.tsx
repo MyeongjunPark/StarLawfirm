@@ -112,6 +112,7 @@ const Home: NextPage = () => {
           justify-content: center;
           align-items: center;
           background-image: url("/bg_img.png");
+          background-repeat: no-repeat;
         }
         .login-form {
           width: 350px;

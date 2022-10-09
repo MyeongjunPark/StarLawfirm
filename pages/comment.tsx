@@ -119,6 +119,7 @@ const Comment: NextPage = () => {
           justify-content: center;
           align-items: center;
           background-image: url("/bg_img.png");
+          background-repeat: no-repeat;
         }
         .comment-form {
           width: 350px;
