@@ -12,9 +12,7 @@ interface FormValue {
   id: string;
   password: string;
 }
-/**
- * React-Cookie를 사용하기 위해서 선언합니다.
- */
+
 const cookies = new Cookies();
 
 const Home: NextPage = () => {

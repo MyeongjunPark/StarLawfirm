@@ -59,7 +59,7 @@ const Comment: NextPage = () => {
   };
 
   /**
-   * 회사 로고 우측의 이름을 클릭하게 되면 실행되면 함수입니다.
+   * 회사 로고 우측의 이름을 클릭하게 되면 실행되는 함수입니다.
    * confirm의 응답이 확인이라면, cookie를 제거하고 reload하여 login이 있는 index를 출력합니다.
    */
   function LogoutConfirm() {
