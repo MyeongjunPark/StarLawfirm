@@ -61,7 +61,7 @@ const Home: NextPage = () => {
     /**
      * axios를 사용하여 로그인 정보를 담아 POST 합니다.
      * 이 후 응답 받은 accessToken을 cookie에 저장합니다.
-     * 그리고 comment 컴포넌트를 출력할 수 있도록 reload 합니다.
+     * 그리고 comment 컴포넌트를 출력할 수 있도록 replace 합니다.
      */
     axios
       .post("/api/user", newLoginArray)
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
           sameSite: "none",
         });
 
-        router.reload();
+        router.replace("/comment");
       })
       .catch((error) => {
         alert("아이디 또는 비밀번호를 확인해주세요.");
@@ -82,24 +82,20 @@ const Home: NextPage = () => {
 
   return (
     <div className="wrap">
-      {login === false ? (
-        <div className="login-form">
-          <div className="login-form-logo">
-            <Image src="/logo.png" alt="logo" width={260} height={29} />
-          </div>
-          <h1>로그인 페이지</h1>
-          <span>아래 양식을 채워주세요.</span>
-          <form onSubmit={handleSubmit(onSubmitHandler)}>
-            <div>ID</div>
-            <input {...register("id")} placeholder="ID" autoComplete="off" />
-            <div>PASSWORD</div>
-            <input {...register("password")} type="password" placeholder="PASSWORD" />
-            <button>로그인</button>
-          </form>
+      <div className="login-form">
+        <div className="login-form-logo">
+          <Image src="/logo.png" alt="logo" width={260} height={29} />
         </div>
-      ) : (
-        <Comment />
-      )}
+        <h1>로그인 페이지</h1>
+        <span>아래 양식을 채워주세요.</span>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <div>ID</div>
+          <input {...register("id")} placeholder="ID" autoComplete="off" />
+          <div>PASSWORD</div>
+          <input {...register("password")} type="password" placeholder="PASSWORD" />
+          <button>로그인</button>
+        </form>
+      </div>
 
       <style jsx>{`
         .wrap {

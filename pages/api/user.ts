@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import userData from "./userData.json";
 import jwt from "jsonwebtoken";
-import jwt_decode from "jwt-decode";
 
 /**
  * userArray 설명
@@ -29,12 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const accessToken = await new Promise((resolve, reject) => {
             jwt.sign(
               {
-                memberId: userItem?.id,
-                memberName: userItem?.name,
+                memberId: userItem?.id, //payload에 담을 id
+                memberName: userItem?.name, //payload에 담을 name
               },
               secret,
               {
-                expiresIn: "5m",
+                expiresIn: "5m", //토큰 유효 시간
               },
               (err, token) => {
                 if (err) {
@@ -61,12 +60,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   /**
    * handler GET 설명
    * GET 요청이 들어오면 req에서 cookie를 받아옵니다.
-   * cookie 안에 들어있는 JWT를 decoding 하여 reponse합니다.
+   * cookie 안에 들어있는 JWT를 검증하고, decoding 하여 reponse합니다.
    */
   if (req.method === "GET") {
     var token = req.cookies.LoginToken;
-    var decoded = jwt_decode(token!);
-    res.send(decoded);
-    return;
+    const secret = "35063ceca085c152603b5aa586811f9954e47715fe2a7aa81e43cb8d2cc83d40";
+    let decoded = jwt.verify(token!, secret);
+    if (decoded) {
+      res.send(decoded);
+    } else {
+      res.send("권한이 없습니다.");
+    }
   }
 }

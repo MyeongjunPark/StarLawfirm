@@ -13,7 +13,6 @@ TypeScript : 4.8.4
 
 axios
 json web token
-jwt-decode
 react-hook-form
 react-cookie
 

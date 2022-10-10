@@ -66,14 +66,15 @@ const Comment: NextPage = () => {
     const con = confirm("로그아웃 하시겠습니까?");
     if (con === true) {
       removeCookie("LoginToken");
-      router.reload();
+      alert("로그아웃 되었습니다.");
+      router.replace("/");
     }
   }
 
   /**
    * useEffect을 사용하여 axios를 통해 GET 요청을 합니다.
-   * 이 때 api에서 해석 된 Name을 받고 setUserName 합니다.
-   * catch 예외 처리로 비정상적인 접근이 발생하면 페이지를 이동시킵니다.
+   * 이 때 api에서 토큰 만료기간을 검증하고 디코딩 된 데이터를 받고 setState 합니다.
+   * catch 예외 처리로 비정상적인 접근, 또는 토큰이 만료되면 페이지를 이동시킵니다.
    */
   useEffect(() => {
     axios
@@ -83,8 +84,10 @@ const Comment: NextPage = () => {
         setUserName(memberName);
       })
       .catch((err) => {
-        alert("접근 권한이 없습니다.");
-        router.push("/");
+        if (err.response.status === 500) {
+          router.replace("/");
+          alert("로그인이 필요합니다.");
+        }
       });
   });
 
