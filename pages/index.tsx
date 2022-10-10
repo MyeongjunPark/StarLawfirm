@@ -2,7 +2,6 @@ import type { NextPage, NextPageContext } from "next";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Comment from "./comment";
 import { Cookies } from "react-cookie";
 import axios from "axios";
@@ -16,20 +15,8 @@ interface FormValue {
 const cookies = new Cookies();
 
 const Home: NextPage = () => {
-  const [login, setLogin] = useState(false);
   const router = useRouter();
-  /**
-   * LoginToken 쿠키가 undefined면 login state를 false, 아니라면 true를 세팅합니다.
-   * 로그인과 comment 컴포넌트 중 어떤 컴포넌트를 렌더링할지 삼항 연산자에 넣어 사용할 용도입니다.
-   */
-  useEffect(() => {
-    const cookieValue = cookies.get("LoginToken");
-    if (cookieValue === undefined) {
-      setLogin(false);
-    } else {
-      setLogin(true);
-    }
-  }, []);
+
   /**
    * React-hook-form을 사용하기 위해 import 후 선언한 변수입니다.
    * register는 input이 받을 값을 정의합니다.
