@@ -11,9 +11,9 @@ TypeScript : 4.8.4
 
 ### 라이브러리
 
-axios
-json web token
-react-hook-form
+axios  
+json web token  
+react-hook-form  
 react-cookie
 
 ### 설명
