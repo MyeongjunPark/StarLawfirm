@@ -7,7 +7,6 @@ import { Cookies } from "react-cookie";
 import axios from "axios";
 
 interface FormValue {
-  splice(arg0: number, arg1: number, base64Pw: string): unknown;
   id: string;
   password: string;
 }
